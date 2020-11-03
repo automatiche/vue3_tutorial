@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
-    <input type='text' ref='num1' @keyup='add()'>
+    <input type='text' v-model='num1' @keyup='add()'>
     <span>+</span>
-    <input type='text' ref='num2' @keyup='add()'>
+    <input type='text' v-model='num2' @keyup='add()'>
     <span>=</span>
     {{result}}
   </div>
@@ -28,7 +28,7 @@ export default {
   // },
   methods: {
     add(){
-      this.result = parseInt(this.$refs.num1.value) + parseInt(this.$refs.num2.value)
+      this.result = parseInt(this.num1) + parseInt(this.num2)
     } 
   }
 }

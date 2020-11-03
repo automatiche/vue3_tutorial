@@ -1,25 +1,17 @@
 <template>
   <div class="hello">
-    <input type='text' v-model='state.num1' @keyup='add()'>
+    <input type='text' v-model='state.num1'>
     <span>+</span>
-    <input type='text' v-model='state.num2' @keyup='add()'>
+    <input type='text' v-model='state.num2'>
     <span>=</span>
     {{state.result}}
   </div>
 </template>
 
 <script>
-const state = reactive({
-  num1: 0,
-  num2: 0,
-  result: 0
-})
 
-function add() {
-  state.result = parseInt(state.num1) + parseInt(state.num2)
-}
 
-import {reactive} from 'vue'
+import {reactive, computed} from 'vue'
 export default {
   name: 'HelloWorld',
   props: {
@@ -27,9 +19,14 @@ export default {
   },
   // 没有this
   setup(){
+    const state = reactive({
+      num1: 0,
+      num2: 0,
+      result: computed(() => parseInt(state.num1) + parseInt(state.num2))
+    })
+
     return {
-      state,
-      add
+      state
     }
   },
   // data () {

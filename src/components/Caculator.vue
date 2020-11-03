@@ -1,28 +1,35 @@
 <template>
 {{msg}}
-  
-</template>
-  <!-- <div class="hello">
+  <div class="hello">
     <input type='text' v-model='state.num1'>
     <span>+</span>
     <input type='text' v-model='state.num2'>
     <span>=</span>
     {{state.result}}
     <button type='button' @click='clickEvent()'>emit event:</button>
-  </div> -->
+  </div>
+</template>
+
 <script>
-
-
-import {reactive, computed} from 'vue'
+import {reactive, computed, onMounted, onUpdated, onUnmounted} from 'vue'
 export default {
-  name: 'HelloWorld',
+  name: 'Caculator',
   props: {
     msg: String
   },
   // 没有this
   setup(props, { emit }){
-      console.log('setup > props', props);
-
+    onMounted(() => {
+      console.log('mounted');
+      
+    })
+    onUpdated(() => {
+      console.log('onUpdated');
+      
+    })
+    onUnmounted(() => {
+      console.log('onUnmounted');
+    })
     const state = reactive({
       num1: 0,
       num2: 0,
@@ -38,22 +45,9 @@ export default {
       clickEvent
     }
   },
-  // data () {
-  //   return {
-  //     num1: 0, 
-  //     num2: 0,
-  //     result: 0
-  //   }
-  // },
-  // computed: {
-  //   result(){
-  //     return parseInt(this.num1) + parseInt(this.num2)
-  //   }
-  // },
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
   margin: 40px 0 0;

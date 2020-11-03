@@ -1,15 +1,18 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App" @sendmsg="handle"/>
+  <!-- <HelloWorld msg="Welcome to Your Vue.js App" @sendmsg="handle"/> -->
+  <Caculator msg="Welcome to Caculator" @sendmsg="handle"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+import Caculator from './components/Caculator.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    // HelloWorld,
+    Caculator
   },
   setup(){
     const handle = value => {

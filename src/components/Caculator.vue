@@ -1,5 +1,4 @@
 <template>
-{{msg}}
   <div class="hello">
     <input type='text' v-model='state.num1'>
     <span>+</span>
@@ -8,10 +7,12 @@
     {{state.result}}
     <button type='button' @click='clickEvent()'>emit event:</button>
   </div>
+{{msg}}
+
 </template>
 
 <script>
-import {reactive, computed, onMounted, onUpdated, onUnmounted} from 'vue'
+import {reactive, computed, onMounted, onUpdated, onUnmounted, onRenderTriggered, onRenderTracked} from 'vue'
 export default {
   name: 'Caculator',
   props: {
@@ -29,6 +30,13 @@ export default {
     })
     onUnmounted(() => {
       console.log('onUnmounted');
+    })
+    onRenderTriggered(() => {
+      console.log('onRenderTriggered');
+    })
+    onRenderTracked((e) => {
+      // debugger;
+      console.log('onRenderTracked' + e);
     })
     const state = reactive({
       num1: 0,

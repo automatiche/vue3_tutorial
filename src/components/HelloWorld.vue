@@ -9,6 +9,16 @@
 </template>
 
 <script>
+const state = reactive({
+  num1: 0,
+  num2: 0,
+  result: 0
+})
+
+function add() {
+  state.result = parseInt(state.num1) + parseInt(state.num2)
+}
+
 import {reactive} from 'vue'
 export default {
   name: 'HelloWorld',
@@ -17,15 +27,6 @@ export default {
   },
   // 没有this
   setup(){
-    const state = reactive({
-      num1: 0,
-      num2: 0,
-      result: 0
-    })
-
-    function add() {
-      state.result = parseInt(state.num1) + parseInt(state.num2)
-    }
     return {
       state,
       add

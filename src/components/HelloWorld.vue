@@ -5,6 +5,7 @@
     <input type='text' v-model='state.num2'>
     <span>=</span>
     {{state.result}}
+    <button type='button' @click='clickEvent()'>emit event:</button>
   </div>
 </template>
 
@@ -18,15 +19,22 @@ export default {
     msg: String
   },
   // 没有this
-  setup(){
+  setup(props, { emit }){
+      console.log('setup > props', props);
+
     const state = reactive({
       num1: 0,
       num2: 0,
       result: computed(() => parseInt(state.num1) + parseInt(state.num2))
     })
 
+    const clickEvent = () => {
+      emit("sendmsg", state.result)
+    }
+
     return {
-      state
+      state,
+      clickEvent
     }
   },
   // data () {
@@ -41,11 +49,6 @@ export default {
   //     return parseInt(this.num1) + parseInt(this.num2)
   //   }
   // },
-  // methods: {
-  //   add(){
-  //     this.result = parseInt(this.num1) + parseInt(this.num2)
-  //   } 
-  // }
 }
 </script>
 

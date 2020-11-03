@@ -1,6 +1,6 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HelloWorld msg="Welcome to Your Vue.js App" @sendmsg="handle"/>
 </template>
 
 <script>
@@ -10,6 +10,14 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  setup(){
+    const handle = value => {
+      console.log('setup > value', value);
+    }
+    return {
+      handle
+    }
   }
 }
 </script>
@@ -24,3 +32,4 @@ export default {
   margin-top: 60px;
 }
 </style>
+

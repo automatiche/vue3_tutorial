@@ -9,28 +9,45 @@
 </template>
 
 <script>
+import {ref} from 'vue'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
   },
-  data () {
+  // 没有this
+  setup(){
+    const num1 = ref(0)
+    const num2 = ref(0)
+    const result = ref(0)
+
+    function add() {
+      result.value = parseInt(num1.value) + parseInt(num2.value)
+    }
     return {
-      num1: 0, 
-      num2: 0,
-      result: 0
+      num1,
+      num2,
+      result,
+      add
     }
   },
+  // data () {
+  //   return {
+  //     num1: 0, 
+  //     num2: 0,
+  //     result: 0
+  //   }
+  // },
   // computed: {
   //   result(){
   //     return parseInt(this.num1) + parseInt(this.num2)
   //   }
   // },
-  methods: {
-    add(){
-      this.result = parseInt(this.num1) + parseInt(this.num2)
-    } 
-  }
+  // methods: {
+  //   add(){
+  //     this.result = parseInt(this.num1) + parseInt(this.num2)
+  //   } 
+  // }
 }
 </script>
 

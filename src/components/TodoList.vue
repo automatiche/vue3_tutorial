@@ -3,21 +3,34 @@
     <h1>todolist</h1>
     <h3>未完成的列表</h3>
     <ul>
-      <li class="list-group-item" v-for='(item, index) in lists' :key='index' @click='()=>(item.checked = !item.checked)'>
+      <template  v-for='(item, index) in lists'>
+        <li class="list-group-item" :key='index' @click='()=>(item.checked = !item.checked)' v-if='!item.checked'>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" :id="'item-' + index"
+            v-model="item.checked"
+            >
+            <label class="form-check-label" :for="'item-' + index">{{item.name}}</label>
+          </div>
+        </li>
+      </template>
+    </ul>
+    <h3>已完成的列表</h3>
+    <ul>
+      <li class="list-group-item" v-for='(item, index) in finish' :key="'finished-' + index">
         <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" :id="'item-' + index"
+          <input type="checkbox" class="form-check-input" :id="'finished-' + index"
           v-model="item.checked"
+          disabled
           >
-          <label class="form-check-label" :for="'item-' + index">{{item.name}}</label>
+          <label class="form-check-label" :for="'finished-' + index">{{item.name}}</label>
         </div>
       </li>
     </ul>
-    <h3>已完成的列表</h3>
   </div>
 </template>
 
 <script>
-import {reactive, toRefs} from 'vue'
+import {reactive, toRefs, computed} from 'vue'
 
 export default {
   name: 'Todolist',
@@ -44,7 +57,7 @@ export default {
           isEdit: false
         },
       ],
-      // finish: computed(() => state.lists.filter((item)=>item.checked == true))
+      finish: computed(() => state.lists.filter((item)=>item.checked == true))
     })
     return toRefs(state)
   }

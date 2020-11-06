@@ -11,12 +11,11 @@
       <template v-for="(item, index) in lists">
         <!-- 此处点击click修改checked状态的行为是否不推荐 -->
         <li
-          class="list-group-item"
+          class="list-group-item d-flex justify-content-between"
           :key="index"
-          
           v-if="!item.checked"
         >
-          <div class="form-group form-check">
+          <div class="form-group form-check mb-0">
             <input
               type="checkbox"
               class="form-check-input"
@@ -34,6 +33,9 @@
               <input type="text" v-model="editValue" ref='myinput'/>
             </label>
           </div>
+          <button type="button" class="close" aria-label="Close" @click='(e)=>remove(e, item,index)'>
+            <span aria-hidden="true">&times;</span>
+          </button>
         </li>
       </template>
     </ul>
@@ -116,6 +118,14 @@ export default {
         }
       }
     }
+    const remove = (e, item,index) => {
+      state.lists.splice(index, 1)
+      // state.lists = state.lists.filter(list=>{
+      //   return(
+      //     list.name !== item.name
+      //   )
+      // })
+    }
 
     const state = reactive({
       value: '',
@@ -143,7 +153,8 @@ export default {
       add,
       showEdit,
       mouseDown,
-      myinput
+      myinput,
+      remove
     })
 
     onUpdated(()=>{
